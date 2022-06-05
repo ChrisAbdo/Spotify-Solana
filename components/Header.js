@@ -2,6 +2,7 @@ import Image from 'next/image'
 import UploadButton from './UploadButton'
 import {useContext} from 'react'
 import { SpotifyContext } from '../context/context'
+import CloudButton from './CloudButton'
 
 const style = {
   arrowButton: `bg-black mr-2 w-10 h-10 flex items-center justify-center rounded-full bg-opacity-50 cursor-pointer hover:bg-opacity-75`,
@@ -24,7 +25,7 @@ const Header = ({setShowUploadMusic}) => {
   return (
     <div className={style.header}>
       <div className={style.headerWrapper}>
-        <div className='flex items-center'>
+        <div className='flex items-center opacity-0'>
           <div className={style.arrowButton}>
             <img alt='' src='assets/chevronLeft.svg' width={20} height={20} />
           </div>
@@ -34,6 +35,7 @@ const Header = ({setShowUploadMusic}) => {
         </div>
 
         <div className={style.headerRight}>
+          <CloudButton />
             <UploadButton setShowUploadMusic={setShowUploadMusic}/>
           <div className={style.profile}>
             <div className={style.profileAvatarContainer}>
