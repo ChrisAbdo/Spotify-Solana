@@ -29,9 +29,7 @@ const cloudStorage = () => {
         onChange={onChange}
       />
       {
-        fileUrl && (
-          <img src={fileUrl} width="600px" />
-        )
+        fileUrl
       }
       <h1>IPFSLink: 
         <a href={fileUrl}>{fileUrl}</a>

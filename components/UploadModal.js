@@ -1,5 +1,9 @@
 import style from '../styles/UploadModal.module.css'
 import axios from 'axios'
+import { create } from 'ipfs-http-client';
+import { useState } from 'react'
+const client = create('https://ipfs.infura.io:5001/api/v0')
+
 
 const UploadModal = ({
   description: title,
@@ -50,19 +54,33 @@ const UploadModal = ({
     newMusic()
   }
 
+  const [fileUrl, updateFileUrl] = useState(``)
+    async function onChange(e) {
+        const file = e.target.files[0]
+        try {
+          const added = await client.add(file)
+          const url = `https://ipfs.infura.io/ipfs/${added.path}`
+          updateFileUrl(url)
+        } catch (error) {
+          console.log('Error uploading file: ', error)
+        }  
+      }
+      
   return (
     <div className={style.wrapper}>
-      <div className={style.title}>Upload New Music</div>
-      <input type='file' id='music-file' name='file' />
-      <div className={style.modalButtons}>
-        <button
-          onClick={uploadClicked}
-          className={`${style.button} ${style.createButton}`}
-        >
-          Upload
-        </button>
-      </div>
 
+      <div className={style.title}>Upload New Music</div>
+      
+      <h1>Don't have a URL? Create one here!</h1>
+      <input
+        type="file"
+        onChange={onChange}
+      />
+      <div className={style.fileUrl}>{fileUrl}</div>
+
+
+      <h1>Paste this link into Music Url</h1>
+      <h1>~~~~~~~~~~~~~~~~~~~~~~~~~~~~</h1>
       <div className={style.inputField}>
         <div className={style.inputTitle}>Title</div>
         <div className={style.inputContainer}>
@@ -82,7 +100,11 @@ const UploadModal = ({
             type='text'
             value={musicUrl}
             onChange={e => setMusicUrl(e.target.value)}
-          />
+          >
+          </input>
+          
+          
+          
         </div>
       </div>
       <div className={style.modalButtons}>

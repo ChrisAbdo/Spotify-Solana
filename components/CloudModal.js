@@ -26,11 +26,7 @@ const CloudModal = ({setCloudStorage}) => {
         type="file"
         onChange={onChange}
       />
-      {
-        fileUrl && (
-          <img src={fileUrl} width="600px" />
-        )
-      }
+      
       <h1>IPFSLink: 
         <h1  id="myInput">{fileUrl}</h1>
       </h1>
