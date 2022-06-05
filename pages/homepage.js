@@ -3,6 +3,7 @@ import Activity from '../components/activity'
 import { useEffect, useState } from 'react'
 import Header from '../components/Header'
 import UploadModal from '../components/UploadModal'
+import CloudModal from '../components/CloudModal'
 import Playlist from '../components/Playlist'
 import PlayerControls from '../components/PlayerControls'
 
@@ -15,6 +16,7 @@ const HomePage = () => {
   const [title, setTitle] = useState('')
   const [musicUrl, setMusicUrl] = useState('')
   const [songs, setSongs] = useState([])
+  const [cloudStorage, setCloudStorage] = useState(false)
 
   const { newMusic, getSongs } = useSpotify(
     musicUrl,
@@ -34,7 +36,7 @@ const HomePage = () => {
     <div className='flex'>
       <Nav />
         <div className='w-full'>
-          <Header setShowUploadMusic={setShowUploadMusic} />
+          <Header setShowUploadMusic={setShowUploadMusic} setCloudStorage={setCloudStorage}/>
           <Playlist songs={songs}/>
           <PlayerControls songs={songs}/>
           {showUploadMusic && (
@@ -45,9 +47,13 @@ const HomePage = () => {
               musicUrl={musicUrl}
               setMusicUrl={setMusicUrl}
               newMusic={newMusic}
-
             />
           )}
+          {cloudStorage && (
+            <CloudModal setCloudStorage={setCloudStorage} />
+          )}
+          
+          
         </div>
       <Activity />
     </div>

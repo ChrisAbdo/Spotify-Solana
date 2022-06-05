@@ -18,7 +18,7 @@ const style = {
   playButton: `bg-green-500 w-16 h-16 flex pl-2 items-center justify-center rounded-full cursor-pointer`,
 }
 
-const Header = ({setShowUploadMusic}) => {
+const Header = ({setShowUploadMusic, setCloudStorage}) => {
 
     const {currentSong} = useContext(SpotifyContext)
 
@@ -35,7 +35,7 @@ const Header = ({setShowUploadMusic}) => {
         </div>
 
         <div className={style.headerRight}>
-          <CloudButton />
+          <CloudButton setCloudStorage={setCloudStorage}/>
             <UploadButton setShowUploadMusic={setShowUploadMusic}/>
           <div className={style.profile}>
             <div className={style.profileAvatarContainer}>

@@ -5,20 +5,18 @@ const styles = {
   uploadButton: `bg-green-500 mr-10 px-3 py-1.5 cursor-pointer hover:scale-95 transition rounded-full`,
 }
 
-const CloudButton = ({ setShowUploadMusic }) => {
+const CloudButton = ({ setCloudStorage }) => {
 
   const uploadClicked = () => {
-    console.log(setShowUploadMusic)
-    setShowUploadMusic(true)
+    console.log(setCloudStorage)
+    setCloudStorage(true)
   }
 
   return (
     <div>
-        <Link href='/cloud-storage'>
-            <div className={styles.uploadButton}>
-                Cloud Storage
-            </div>
-        </Link>
+        <div onClick={uploadClicked} className={styles.uploadButton}>
+            Cloud Storage
+        </div>
     </div>
   )
 }
